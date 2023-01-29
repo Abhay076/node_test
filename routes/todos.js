@@ -1,0 +1,11 @@
+const express = require("express");
+const router = express.Router();
+// const checkAuth = require('../middleware/check-auth');
+const checkAuth = require("../app/api/controllers/users");
+const todoController = require("../app/api/controllers/todos");
+router.get("/get-order", checkAuth.authenticate, todoController.getAll);
+router.post("/add-order", checkAuth.authenticate, todoController.create);
+router.get("/:todoId", checkAuth.authenticate, todoController.getById);
+router.put("/:todoId", checkAuth.authenticate, todoController.updateById);
+router.delete("/:todoId", checkAuth.authenticate, todoController.deleteById);
+module.exports = router;
